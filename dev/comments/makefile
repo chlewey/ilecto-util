@@ -7,10 +7,7 @@ CFLAGS=-std=gnu++11 -fPIC -shared
 OFLAGS=-std=gnu++11 -c
 AFLAGS=rvs
 
-all: $(NAME).so
+all: $(NAME).so $(NAME)-srch.so
 
-$(NAME).so: $(NAME).cc $(DEPS)
+%.so: %.cc %.h $(DEPS)
 	$(CC) -o $@ $< ../main/interlecto.a $(CFLAGS)
-
-%.o: %.cc $(DEPS)
-	$(CC) -o $@ $< $(OFLAGS)

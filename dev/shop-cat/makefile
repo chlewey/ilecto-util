@@ -1,16 +1,13 @@
 
-NAME=shop-cat
+NAMES=shop-cat shop-srch
 CC=g++
 AR=ar
-DEPS=$(NAME).h ../main/interlecto.h ../main/interlecto.a
+DEPS=$(NAMES:=.h) ../main/interlecto.h ../main/interlecto.a
 CFLAGS=-std=gnu++11 -fPIC -shared
 OFLAGS=-std=gnu++11 -c
 AFLAGS=rvs
 
-all: $(NAME).so
+all: $(NAMES:=.so)
 
-$(NAME).so: $(NAME).cc $(DEPS)
+%.so: %.cc %.h $(DEPS)
 	$(CC) -o $@ $< ../main/interlecto.a $(CFLAGS)
-
-%.o: %.cc $(DEPS)
-	$(CC) -o $@ $< $(OFLAGS)
